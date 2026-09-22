@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: global-payment-service
+
+  # Adatbázis kapcsolat beállításai
+  datasource:
+    url: jdbc:postgresql://localhost:5432/global_payment
+    username: payment_user
+    password: payment_password
+    driver-class-name: org.postgresql.Driver
+
+  # JPA / Hibernate beállítások
+  jpa:
+    hibernate:
+      # Fejlesztés alatt automatikusan frissíti a sémát (éles környezetben ez 'none' lenne, Liquibase/Flyway-jel)
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
