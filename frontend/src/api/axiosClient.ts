@@ -11,7 +11,6 @@ const axiosClient = axios.create({
 axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Ha a backend RFC 9457 ProblemDetail struktúrát küld vissza
     if (error.response && error.response.data) {
       const problemDetail = error.response.data;
       console.error(

@@ -99,5 +99,6 @@ export const useAccounts = () => {
     formError,
     successMessage,
     createAccount,
+    refreshAccounts: fetchAccounts,
   };
 };
