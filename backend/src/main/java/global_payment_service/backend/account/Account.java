@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class Account {
 
@@ -18,7 +19,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 19, scale = 4)
     private BigDecimal balance;
 
     @Enumerated(EnumType.STRING)
@@ -28,7 +29,5 @@ public class Account {
     //TODO Needed for Epic 3 version following (Optimistic Locking) prepare
     @Version
     private Long version;
-
-    public Account() {}
 }
 
