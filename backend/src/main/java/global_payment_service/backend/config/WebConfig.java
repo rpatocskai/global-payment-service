@@ -1,4 +1,4 @@
-package global_payment_service.backend.infrastructure.config;
+package global_payment_service.backend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
