@@ -1,4 +1,4 @@
-package global_payment_service.backend.infrastructure.error;
+package global_payment_service.backend.common;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
