@@ -1,0 +1,12 @@
+# ?? Projekt Tervezés & Feladat Lebontás
+
+Mielõtt egyetlen sort is kódoltam volna, az AI-t mint Scrum Mastert / Product Ownert hívtam segítségül, hogy a projekt követelményeit feature-alapú Epic-ekre és jól elkülöníthetõ Frontend/Backend feladatokra bontsa.
+Az elsõ prompt-t másoltam be mert utána csak epickénti mintát kértem kiindulásnak ( ingyenes Ai-t használva készült el)
+### ?? Feladatlista és Architektúra Generálása
+* **Miért volt szükség rá:** A strukturált fejlesztés érdekében szerettem volna egy tiszta, ipari sztenderd full-stack projekttervet kapni, ami szétválasztja a Spring Boot és a React feladatokat, de funkciónként (Epic-enként) tartja össze õket.
+* **Prompt:**
+  ```text
+  Jelenetkeztem fullstack fejlesztõi állásra, szeretném feladatokra felosztani feature based alapon haladva tehát a BE és FE fejlesztés funkciónként lemenni (epicenként), tudnál egy listát epicenként alfeladatokkal generálni nekem a csatolt specifikáció alapján? spring boot, maven, postgresql és react, mui, axios stackkel dolgoznék, elsõ epic-nél erre gondoltam pl: Project setup & basics és ez alá alfeladatok és így tovább a többinél is.
+  ```
+
+
