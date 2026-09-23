@@ -1,9 +1,15 @@
 import { Grid } from "@mui/material";
 import { AccountForm } from "../api/features/account/components/AccountForm";
 import { AccountTable } from "../api/features/account/components/AccountTable";
-import { useAccounts } from "../api/features/account/hooks/useAccounts";
+import type { useAccounts } from "../api/features/account/hooks/useAccounts";
 
-export const AccountsPage = () => {
+type AccountControllerType = ReturnType<typeof useAccounts>;
+
+interface AccountsPageProps {
+  accountController: AccountControllerType;
+}
+
+export const AccountsPage = ({ accountController }: AccountsPageProps) => {
   const {
     accounts,
     loading,
@@ -15,7 +21,7 @@ export const AccountsPage = () => {
     formError,
     successMessage,
     createAccount,
-  } = useAccounts();
+  } = accountController;
 
   return (
     <Grid container spacing={4}>

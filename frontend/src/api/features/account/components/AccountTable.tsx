@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Box,
   Typography,
@@ -30,6 +30,22 @@ export const AccountTable = ({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const previousLengthRef = useRef(accounts.length);
+
+  useEffect(() => {
+    if (accounts.length > previousLengthRef.current) {
+      const lastPage = Math.floor((accounts.length - 1) / rowsPerPage);
+
+      const timer = setTimeout(() => {
+        setPage(lastPage);
+      }, 0);
+
+      return () => clearTimeout(timer);
+    }
+
+    previousLengthRef.current = accounts.length;
+  }, [accounts.length, rowsPerPage]);
+
   const formatBalance = (amount: number, curr: Currency) => {
     return new Intl.NumberFormat("hu-HU", {
       style: "currency",
@@ -48,9 +64,13 @@ export const AccountTable = ({
     setPage(0);
   };
 
+  const maxPage =
+    accounts.length > 0 ? Math.floor((accounts.length - 1) / rowsPerPage) : 0;
+  const safePage = page > maxPage ? maxPage : page;
+
   const paginatedAccounts = accounts.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage,
+    safePage * rowsPerPage,
+    safePage * rowsPerPage + rowsPerPage,
   );
 
   return (
