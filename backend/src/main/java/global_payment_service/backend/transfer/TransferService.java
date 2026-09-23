@@ -38,7 +38,7 @@ public class TransferService {
             throw new IllegalArgumentException("A forrás és a cél számla nem egyezhet meg.");
         }
 
-        var existingKeyOpt = idempotencyRepository.findById(Long.valueOf(idempotencyKey));
+        var existingKeyOpt = idempotencyRepository.findById(idempotencyKey);
         if (existingKeyOpt.isPresent()) {
             IdempotencyKey key = existingKeyOpt.get();
             if (key.getStatus() == IdempotencyKey.KeyStatus.IN_PROGRESS) {
@@ -82,8 +82,8 @@ public class TransferService {
             BigDecimal targetAmount = request.getAmount().multiply(rate).setScale(4, RoundingMode.HALF_UP);
             targetAccount.setBalance(targetAccount.getBalance().add(targetAmount));
 
-            accountRepository.save(sourceAccount);
-            accountRepository.save(targetAccount);
+            accountRepository.saveAndFlush(sourceAccount);
+            accountRepository.saveAndFlush(targetAccount);
 
             Transfer transfer = Transfer.builder()
                     .sourceAccount(sourceAccount)
@@ -93,7 +93,7 @@ public class TransferService {
                     .exchangeRate(rate)
                     .createdAt(LocalDateTime.now())
                     .build();
-            transferRepository.save(transfer);
+            transferRepository.saveAndFlush(transfer);
 
             TransferResponse response = new TransferResponse(
                     transfer.getId(), "SUCCESS", sourceAccount.getBalance(), targetAccount.getBalance()
