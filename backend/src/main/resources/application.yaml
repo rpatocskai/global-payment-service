@@ -13,16 +13,22 @@ spring:
   jpa:
     hibernate:
       # Auto update schema under the development (in live environment should be 'none' with Liquibase/Flyway)
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+    defer-datasource-initialization: true
+
+  # Just in test task
+  sql:
+    init:
+      mode: always
 
   # Flyway config
   flyway:
-    enabled: true
-    baseline-on-migrate: true
+    enabled: false
+    baseline-on-migrate: false
 
 server:
   port: 8080
